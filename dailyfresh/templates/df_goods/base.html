@@ -1,0 +1,78 @@
+
+{% extends 'base.html' %}
+{% block body %}
+<div class="navbar_con">
+    <div class="navbar clearfix">
+        <div class="subnav_con fl">
+            <h1>全部商品分类</h1>
+            <span></span>
+            <ul class="subnav">
+                {% for type in types %}
+                    <li><a href="{% url 'goods:list' type.id 1 %}" class="{{type.logo}}">{{type.name}}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        <ul class="navlist fl">
+            <li><a href="">首页</a></li>
+            <li class="interval">|</li>
+            <li><a href="">手机生鲜</a></li>
+            <li class="interval">|</li>
+            <li><a href="">抽奖</a></li>
+        </ul>
+    </div>
+</div>
+{% if type %}
+<div class="breadcrumb">
+    <a href="/">全部分类</a>
+    <span>></span>
+    <a href="#">{{type.name}}</a>
+    {% if isDetail %}
+    <span>></span>
+    <a href="">商品详情</a>
+    {% endif %}
+</div>
+{% endif %}
+
+{% block detail %}
+{% endblock detail%}
+
+<div class="main_wrap clearfix">
+    <div class="l_wrap fl clearfix">
+        <div class="new_goods">
+            <h3>新品推荐</h3>
+            <ul>
+                {%for sku in new_skus%}
+                <li>
+                    <a href="{% url 'goods:detail' sku.id%}"><img src="/static/{{sku.image.url}}"></a>
+                    <h4><a href="{% url 'goods:detail' sku.id%}">{{sku.name}}</a></h4>
+                    <div class="prize">￥{{sku.price}}</div>
+                </li>
+                {%endfor%}
+            </ul>
+        </div>
+    </div>
+
+{% block list %}
+{% endblock list %}
+</div>
+
+{% endblock body %}
+
+{%block foot%}
+<div class="footer">
+		<div class="foot_link">
+			<a href="#">关于我们</a>
+			<span>|</span>
+			<a href="#">联系我们</a>
+			<span>|</span>
+			<a href="#">招聘人才</a>
+			<span>|</span>
+			<a href="#">友情链接</a>
+		</div>
+		<p>CopyRight © 2016 北京天天生鲜信息技术有限公司 All Rights Reserved</p>
+		<p>电话：010-****888    京ICP备*******8号</p>
+	</div>
+
+</body>
+</html>
+{%endblock foot%}

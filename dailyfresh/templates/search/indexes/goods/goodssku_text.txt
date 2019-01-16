@@ -1,0 +1,4 @@
+#指定根据表中的哪些字段进行索引 python manage.py rebuild_index命令生成索引数据
+{{ object.name}} #根据商品名称建立索引
+{{ object.desc}} #根据商品简介建立索引
+{{ object.goods.detail}} #根据商品详情建立索引
